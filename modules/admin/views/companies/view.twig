@@ -1,0 +1,79 @@
+{{ use('/yii/widgets/DetailView') }}
+{{ set(this, 'title', company.title) }}
+
+<div class="company-view">
+    <h1>{{ html.encode(this.title)|raw }}</h1>
+
+    <p>
+        {{ html.a('update'|trans('app'), {0: 'update', 'id': company.id}, {'class': 'btn btn-primary'})|raw }}
+        {{
+            html.a('delete'|trans('app'), {0: 'delete', 'id': company.id},
+                {
+                    'class': 'btn btn-danger',
+                    'data': {
+                        'confirm': 'Are you sure want to delete this item?',
+                        'method': 'post',
+                    }
+                }
+            )|raw
+        }}
+    </p>
+
+    {{ detail_view_widget({
+        'model': company,
+        'attributes': [
+            'title',
+            'name',
+            'balance',
+            'dispatcher_phone',
+            'legal_address',
+            'physical_address',
+            'inn',
+            'kpp',
+            'bank',
+            'bik',
+            'okpo',
+            'ogrn'
+        ]
+    }) }}
+
+    <h2>Настройки компании</h2>
+    {{ detail_view_widget({
+        'model': company_settings,
+        'attributes': [
+            'percent_of_sale_order',
+            'percent_of_penalty',
+            'time_border',
+        ]
+    }) }}
+
+    <h2>Начальник</h2>
+    {{ detail_view_widget({
+       'model': chief,
+       'attributes': [
+           'first_name',
+           'second_name',
+           'last_name',
+           'post',
+           'phone',
+           'email',
+       ]
+    }) }}
+
+    <h2>Менеджеры</h2>
+    {% for manager in managers %}
+        <p>{{ manager.first_name|capitalize ~ ' ' ~ manager.second_name|capitalize ~ ' ' ~ manager.last_name|capitalize }}</p>
+        {{ detail_view_widget({
+            'model': manager,
+            'attributes': [
+                'login',
+                'email',
+                'first_name',
+                'second_name',
+                'last_name',
+                'phone',
+                'birthday',
+            ]
+        }) }}
+    {% endfor %}
+</div>

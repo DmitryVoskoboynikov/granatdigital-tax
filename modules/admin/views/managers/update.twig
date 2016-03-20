@@ -1,0 +1,36 @@
+{{ use('/yii/bootstrap/ActiveForm') }}
+{{ set(this, 'title', 'update manager'|trans('app/admin')) }}
+
+<div class="site-signup">
+    <h1>{{ html.encode(this.title) }}</h1>
+
+    <div class="col-lg-6">
+        {% set form = active_form_begin({
+            'id' : 'form-company',
+            'action' : '/admin/managers/update/?id=' ~ model.id,
+        }) %}
+        <div class="row">
+            <div class="col-lg-12">
+                {{ form.field(model, 'login').label('login'|trans('app/admin'))|raw }}
+                {{ form.field(model, 'email').label('email'|trans('app/admin'))|raw }}
+
+                {{ form.field(model, 'company_id')
+                       .label('company'|trans('app/admin'))
+                       .dropDownList(
+                          model.companyList
+                )|raw }}
+
+                {{ form.field(model, 'second_name').label('second_name'|trans('app/admin'))|raw }}
+                {{ form.field(model, 'first_name').label('first_name'|trans('app/admin'))|raw }}
+                {{ form.field(model, 'last_name').label('last_name'|trans('app/admin'))|raw }}
+
+                {{ form.field(model, 'phone').label('phone'|trans('app/admin'))|raw }}
+                {{ form.field(model, 'birthday').label('birthday'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                <input type="submit" value="{{ 'save'|trans('app/admin') }}" class="btn btn-primary" />
+            </div>
+        </div>
+        {{ active_form_end() }}
+    </div>
+</div>

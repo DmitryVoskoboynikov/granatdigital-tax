@@ -1,0 +1,22 @@
+{{ use('/yii/widgets/DetailView') }}
+{{ set(this, 'title', manager.first_name ~ ' ' ~ manager.second_name ~ ' ' ~ manager.last_name) }}
+
+<div class="company-view">
+    <h1>{{ html.encode(this.title)|raw }}</h1>
+
+    <p>{{ html.a('update'|trans('app/admin'), {0: 'update', 'id': manager.id}, {'class': 'btn btn-primary'})|raw }}</p>
+
+    {{ detail_view_widget({
+        'model': manager,
+        'attributes': [
+            'login',
+            'email',
+            {'attribute': 'companyTitle', 'value': manager.companyTitle, 'label': 'Company'},
+            'first_name',
+            'second_name',
+            'last_name',
+            'phone',
+            'birthday'
+        ]
+    }) }}
+</div>

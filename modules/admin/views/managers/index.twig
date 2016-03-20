@@ -1,0 +1,25 @@
+{{ use('/yii/grid/GridView') }}
+{{ set(this, 'title', 'managers'|trans('app/admin')) }}
+
+<div class="company-index">
+    <h1>{{ html.encode(this.title) }}</h1>
+
+    <p>{{ html.a('create manager'|trans('app/admin'), ['create'], {'class': 'btn btn-success'})|raw }}</p>
+
+    {{ grid_view_widget({
+        'dataProvider': dataProvider,
+        'filterModel': searchModel,
+        'columns': [
+            {'class': 'yii\\grid\\SerialColumn'},
+            'login',
+            'email',
+            {'attribute': 'companyTitle', 'value': 'companyTitle', 'label': 'Company'},
+            'first_name',
+            'second_name',
+            'last_name',
+            'phone',
+            'birthday',
+            {'class': 'yii\\grid\\ActionColumn', 'template': '{view} {update}'}
+        ]
+    }) }}
+</div>

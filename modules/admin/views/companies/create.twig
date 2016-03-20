@@ -1,0 +1,82 @@
+{{ use('/yii/bootstrap/ActiveForm') }}
+{{ set(this, 'title', 'create company'|trans('app/admin')) }}
+
+<div class="site-signup">
+    <h1>{{ html.encode(this.title) }}</h1>
+
+    {% if app.session.getFlash('success') %}
+        <div class="alert alert-success">
+            {{ app.session.getFlash('success') }}
+        </div>
+    {% endif %}
+
+    <div class="col-lg-6">
+        {% set form = active_form_begin({
+            'id' : 'form-company',
+            'action' : '/admin/companies/create',
+        }) %}
+        <div class="row">
+            <div class="col-lg-6">
+                {{ form.field(model, 'email_login').label('login'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'password').label('password'|trans('app/admin')).passwordInput()|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'title').label('title'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'name').label('name'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-12">
+                {{ form.field(model, 'dispatcher_phone').label('dispatcher_phone'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'physical_address').label('physical_address'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'legal_address').label('legal_address'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'inn').label('inn'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'kpp').label('kpp'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'okpo').label('okpo'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'ogrn').label('ogrn'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'bank').label('bank'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'bik').label('bik'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'chief_fio').label('chief_fio'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'chief_phone').label('chief_phone'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'chief_post').label('chief_post'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'chief_email').label('chief_email'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'manager_fio').label('manager_fio'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                {{ form.field(model, 'manager_phone').label('manager_phone'|trans('app/admin'))|raw }}
+            </div>
+            <div class="col-lg-6">
+                <input type="submit" value="{{ 'save'|trans('app/admin') }}" class="btn btn-primary" />
+            </div>
+        </div>
+        {{ active_form_end() }}
+    </div>
+</div>

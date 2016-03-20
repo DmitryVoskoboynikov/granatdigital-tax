@@ -1,0 +1,27 @@
+{{ use('/yii/bootstrap/ActiveForm') }}
+{{ set(this, 'title', 'settings'|trans('app/settings')) }}
+
+<div class="site-signup">
+    <h1>{{ html.encode(this.title) }}</h1>
+
+    {% if app.session.getFlash('success') %}
+        <div class="alert alert-success">
+            {{ app.session.getFlash('success') }}
+        </div>
+    {% endif %}
+
+    <div class="col-lg-5">
+        {% set form = active_form_begin({
+            'id' : 'form-system-settings',
+            'action' : '/admin/settings/update',
+            'options' : {'class' : 'form-horizontal'},
+        }) %}
+            {{ form.field(model, 'percent_of_sale_order').label('percent_of_sale_order'|trans('app/settings')) | raw }}
+            {{ form.field(model, 'percent_of_penalty').label('percent_of_penalty'|trans('app/settings')) | raw }}
+            {{ form.field(model, 'time_border').label('time_border'|trans('app/settings')) | raw }}
+            <div class="form-group">
+                <input type="submit" value="{{ 'save'|trans('app/forms') }}" class="btn btn-primary" />
+            </div>
+        {{ active_form_end() }}
+    </div>
+</div>
